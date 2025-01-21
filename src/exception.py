@@ -1,5 +1,5 @@
 import sys # This library has the information regarding the exception if occurs, as this module provides function and variables that are used to manipulate different parts of the python runtime environment.
-from logger import logging
+from src.logger import logging
 # Generally this library is present by default and hence is not needed to be mentioned in the requirements.txt file.
 
 

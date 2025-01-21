@@ -40,5 +40,10 @@
 
  -- Student performance indicator 
 
- (a) Jupyter notebook is the best to perform EDA and with the observations from this we can try to see how to encorporate it into our project. See the problem statement within notebook in the EDA notebook. (to run jupyter notebook in vs code we need to install the ipykernal within the venv..will be prompted by vscode itself)
+ (a) Jupyter notebook is the best to perform EDA and with the observations from this we can try to see how to encorporate it into our project. See the problem statement within notebook in the EDA notebook. (to run jupyter notebook in vs code we need to install the ipykernal within the venv..will be prompted by vscode itself). Try running the EDA and traning notebook to get a better appreciation of the model.
+
+ 4. Data ingestion Implmentation
+
+ (a) Data Ingestion: We will see how the data can be ingested so that the data can be used by our model. (Will see how the data is extracted locally as well as from MongoDB). In companies this data is generally created from the big data or cloud teams, we we use. So my aim is to get the data, and then split it into test and train
+ Here I create a sperater folder called artifacts and store the train and test csv and also log wherever needed.
 
