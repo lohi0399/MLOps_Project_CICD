@@ -40,5 +40,5 @@
 
  -- Student performance indicator 
 
- (a) Jupyter notebook is the best to perform EDA and with the observations from this we can try to see how to encorporate it into our project. See the problem statement within notebook in the EDA notebook
+ (a) Jupyter notebook is the best to perform EDA and with the observations from this we can try to see how to encorporate it into our project. See the problem statement within notebook in the EDA notebook. (to run jupyter notebook in vs code we need to install the ipykernal within the venv..will be prompted by vscode itself)
 
