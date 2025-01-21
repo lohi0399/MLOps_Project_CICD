@@ -1,6 +1,5 @@
 # MLOps_Project_CICD
 
-Step 1:
 
 1. Set up the github repository
  
@@ -35,4 +34,9 @@ Step 1:
  -- logger.py
 
  So whenver I get an excpetion I will get the error from exception.py and then log it using logger.py
+
+
+ 3. Defining the project problem statement, EDA and Model Training
+
+ -- Student performance indicator
 
