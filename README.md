@@ -1,98 +1,184 @@
-# MLOps_Project_CICD
+# MLOps Project: Continuous Integration and Continuous Deployment (CI/CD)
+
+This README provides a structured guide for building an MLOps project using Python, Flask, and AWS Elastic Beanstalk with CI/CD pipelines. The project focuses on deploying a machine learning pipeline for a student performance indicator system.
+
+---
+
+## 1. **Setting up the GitHub Repository**
+
+### a. Create a Virtual Environment
+- Use the command: `python -m venv .venv` to create a virtual environment.
+- Activate it using `\.venv\Scripts\activate` (Windows).
+- Freeze dependencies into `requirements.txt` to manage project-specific libraries.
+- Add a `.gitignore` file to exclude unnecessary files (e.g., `.venv`, `artifacts/`).
+
+**Placeholder for Virtual Environment Image**
+
+### b. Create `setup.py`
+- `setup.py` allows you to package your project for reuse and deployment.
+- To identify the project's packages, structure your code with a `src` folder containing an `__init__.py` file. Example:
+  ```
+  src/
+    __init__.py
+  ```
+- Use the `find_packages()` function in `setup.py` to locate all `__init__.py` files.
+- Link `setup.py` to `requirements.txt` by adding `-e .` in the latter. Install dependencies with:
+  ```
+  pip install -r requirements.txt
+  ```
+  
+**Placeholder for Setup.py Example Image**
+
+### c. Automate File Creation (Optional)
+- Use a `template.py` script to automate boilerplate creation, but manually setting up files is recommended for beginners to understand their roles.
+
+---
+
+## 2. **Logging and Exception Handling**
+
+### a. Create a `component` Folder
+- This folder organizes key functionalities:
+  - `data_ingestion.py`: Handles data extraction, splitting into train/test.
+  - `data_transformation.py`: Manages data preprocessing like encoding and scaling.
+  - `model_trainer.py`: Trains models and evaluates performance (e.g., R² score).
+  - `model_pusher.py`: Pushes the trained `model.pkl` file to cloud storage.
+
+**Placeholder for Component Folder Image**
+
+### b. Create a `pipeline` Folder
+- Defines the overall workflow:
+  - `train_pipeline.py`: Integrates data ingestion, transformation, and model training.
+  - `prediction_pipeline.py`: Handles inference for new data.
+
+**Placeholder for Pipeline Folder Image**
+
+### c. Add Utility Scripts
+- **`exception.py`**: Centralized exception handling.
+- **`logger.py`**: Logs errors and runtime information.
+- **`utils.py`**: Helper functions for dependencies and reusable code.
+
+---
+
+## 3. **Defining the Problem Statement**
+
+### Student Performance Indicator
+- Use Jupyter Notebook for Exploratory Data Analysis (EDA).
+- Install `ipykernel` to run Jupyter in your virtual environment.
+- Analyze data to uncover insights and prepare observations for implementation.
+
+**Placeholder for EDA Notebook Image**
+
+---
+
+## 4. **Data Ingestion Implementation**
+
+### Goals:
+- Extract data from local sources or databases (e.g., MongoDB).
+- Split data into training and testing sets.
+- Store processed data in an `artifacts/` folder. (Add `artifacts/` to `.gitignore` to avoid pushing it to GitHub.)
+
+**Placeholder for Data Ingestion Image**
+
+---
+
+## 5. **Data Transformation Pipeline**
+
+### Goals:
+- Perform feature engineering and data cleaning.
+- Use transformers for scaling, encoding, and preprocessing.
+- Ensure consistency with the training dataset structure.
+
+**Placeholder for Data Transformation Image**
+
+---
+
+## 6. **Model Training**
+
+### Goals:
+- Train a machine learning model.
+- Save the trained model as a `model.pkl` file in the `artifacts/` folder.
+
+**Placeholder for Model Training Image**
+
+---
+
+## 7. **Hyperparameter Tuning**
+- Implement techniques like Grid Search or Random Search to optimize model performance.
+- Use cross-validation for robust evaluation.
+
+**Placeholder for Hyperparameter Tuning Image**
+
+---
+
+## 8. **Prediction Pipeline**
+
+### Goals:
+- Develop a Flask-based web application.
+- Provide endpoints for:
+  - Home: `http://127.0.0.1:5000/`
+  - Predictions: `http://127.0.0.1:5000/predictions`
+- Interact with the `model.pkl` file for inference.
+
+![](images/web_output.png "Web Output from Flask")
+
+---
+
+## 9. **Project Deployment Using AWS Elastic Beanstalk**
+
+### AWS Elastic Beanstalk Overview
+- AWS Elastic Beanstalk orchestrates AWS services (e.g., EC2, S3, SNS, CloudWatch) for easy application deployment.
+- Automates server configuration, scaling, and load balancing.
+- AWS has a feature called codepipeline which gives a framework for **continous delivery**. Basically, using the python file we have a eb instance and we have our githun repo where all the code is. To connect both these we use this codepipeline provided by AWS.
 
 
-1. Set up the github repository
- 
- (a) New environment (venv) -- use python -m venv .venv in the cmd and activate it using .\.venv\Scripts\activate (in windows) -- This helps us in freezing all the libraries which I will be using for this particular project
- --Add a gitingore file manually or from the repo itself in the browser
 
- (b) Setup.py -- This is important if you want to make you code into a package which can be install using pip, and can be hosted or deployed on python pypi. We can use this package in other projects.
+### Configuration
+1. **`.ebextensions` Folder**
+   - Create a `python.config` file specifying the application's entry point:
+     ```
+     WSGIPath: application:application
+     ```
+   - Ensure the entry point (`application.py`) is correctly defined.
 
- -- For setup.py to identify packages in my project,we need to create a folder called src within which a file names __init__.py needs to be made. Now whenever the find_packages() function is running (within setup.py) then it automatically checks to see if how many __init__.py files are there anywhere within my project and will try to build it. It basically consideres thwe src fodler as a package and hence we can run src (__init__.py) as a package and use it (if hosted on pypi).
+**Placeholder for .ebextensions Folder Image**
 
- (c) requirements.txt -- As 100's of dependencies are needed and it is not feasible to mention everything within the setup.py file. Here it is important to note that to tie setup.py to requirements we need to write "-e ." in this file, so that the setup file can directly be run when we call 'pip install requirement.txt'. (Also handle removing this -e . in the setup files while this reads all libraries) -- run this using pip install -r requirements.txt ( You can see that mlproject.egg-info is created meaning setup.py is run, You can now everything in the package would be run from __init__.py)
+2. **AWS Elastic Beanstalk Setup**
+   - Create an AWS account (requires a credit card).
+   - Navigate to Elastic Beanstalk and create a new application (e.g., "Student Performance") under the Top Features option.
+   - Select the Python platform and configure your environment.
+![](images/1.png)
+![](images/2.png)
+![](images/3.png)
+![](images/4.png)
+![](images/5.png)
 
- NOTE: All this process file making and defining process can be automated by make a simple template.py script, but the point of making it from scracth is for beginner to understanf what each file does
+We select python as the environment for the eb instance (we can also have docker).
 
- 2. Logging and Exception Handling
- 
- (a) Create a folder called component in src and create a __init__.py under. This means compoent can also be exported as a package and hence can also be imported to someother file location. (This component may be handling extracting data from other databases and using it or ingesting it in our project) So within this I create:
- 
- -- data ingestion.py : for reading data , making train and test etc..
- -- data transformation.py : hot one encoding, converting numerical to categoirical etc..
- -- model_trainer.py : training the model and checking accuracy (r2 etc..)
- -- model_pusher.py: pushing the model.pkl file into the cloud
+3. **CI/CD Pipeline with AWS CodePipeline**
+   - Use AWS CodePipeline for continuous delivery.
+   - Connect the GitHub repository to automate deployment to Elastic Beanstalk.
+![](images/6.png)
+![](images/7.png)
+![](images/8.png)
+![](images/9.png)
+Here we give out github repo path and branch
 
- (b) Create a folder called pipeline within src. This is need so that we have a defined training and prediction pipeline. 
+![](images/10.png)
+AWS Jenkins can be added for building tests.
 
- -- train_pipeline.py : From the training pipeline I will try to call the data ingestion, transfomation etc..
- -- prediction_pipeline.py : for new data
+![](images/11.png)
+![](images/12.png)
+---
 
- (c) Adding three files logger.py,utils.py and exception.py for handling my project bugs, dependencies and errors.
+## Notes
+- **Docker and Python Virtual Environments**: A Docker container also needs Python installed to run a Python application. However, the key difference is that Python in Docker is bundled as part of the container image, independent of the host system. This ensures:
+  - **Portability**: The container can run on any system with Docker installed, regardless of the host's Python version.
+  - **Reproducibility**: The Python version and dependencies remain consistent across environments (e.g., development, testing, production).
+  - **Isolation**: Each container is fully isolated, preventing conflicts with other projects or system-level dependencies. Therefore we don't have conflicts arising due to different OS, machines etc.
+- Update this README with screenshots of deployed applications, pipelines, and results.
+- Add detailed explanations for each implementation step in future updates.
+- Can use python linter to avoid warning and manage test quality.
+-- Logging and checkpointing system can be used as tests
 
- -- exception.py
- -- logger.py
-
- So whenver I get an excpetion I will get the error from exception.py and then log it using logger.py
-
-
- 3. Defining the project problem statement, EDA and Model Training
-
- -- Student performance indicator 
-
- (a) Jupyter notebook is the best to perform EDA and with the observations from this we can try to see how to encorporate it into our project. See the problem statement within notebook in the EDA notebook. (to run jupyter notebook in vs code we need to install the ipykernal within the venv..will be prompted by vscode itself). Try running the EDA and traning notebook to get a better appreciation of the model.
-
- 4. Data ingestion Implmentation
-
-data_ingestion.py: We will see how the data can be ingested so that the data can be used by our model. (Will see how the data is extracted locally as well as from MongoDB). In companies this data is generally created from the big data or cloud teams, we we use. So my aim is to get the data, and then split it into test and train
- Here I create a sperater folder called artifacts and store the train and test csv and also log wherever needed. (If you don't want to push trhe aritfacts folder then add artifacts/ in your .gitignore, for some reason adding .artifacts didn't work for me)
-
- 5. Data transformation pipeline
-
- data_transformation.py: To do feature engineering, data cleaning, changing the dataset, column transformer, standard scaling etc.. (see the notebook)
-
- 6. Model trainer: This creates my model.pkl file which can be later used for prediction. (You can see this under the artifacts folder if all the steps implemeted till now works fine.)
-
- 7. Hyperparameter tuning 
-
- 8. Prediction pipeline using Flask Web App : A simple web application which basically intracts with my .pkl files (type http://127.0.0.1:5000/ ,http://127.0.0.1:5000/predictions, etc.. in browser. By default the port is 5000)
-
- < will add final prediction image here>
-
- 9. Project deployement using AWS using CICD pipeline : AWS elastic beanstalk 
-
--- AWS Elastic Beanstalk is an orchestration service offered by Amazon Web Services for deploying applications which orchestrates various AWS services, including EC2, S3, Simple Notification Service (SNS), CloudWatch, autoscaling, and Elastic Load Balancers. (source: wiki)
-
--- There are 2 different configurations we need to setup while working with elastic bean(eb) stalk. See within .ebextentions folder I have created a python.config file showcasing this. This python config file mainly tells the elastic bean stalk instance what is the entry point of your application. The content was give in the eb documentation (there is a different config file for docker based deployement). As we have seen earlier the entry point to our flask application was application, and hence in the config file it was set to:(also a application.py file was created (same content as app.py, make sure to delete the app.py as this causes problems))
-
-WSGIPath: application:application
-
--- Now create a AWS account (need a credit card). Then search for Elastic Bean Stalk and click on applications under Top Features
-
-<will add picture here>
-
--- Create a webapp in the eb website. Say called it 'Student Performance'.
-
--- Select the platform as python <version you use>
-
--- How the deployement occurs is we have a elastic bean stalk (which maybe a server or a linux machine) where we can create an environment and deploy my code. This is bascially presentr in AWS and we have configured this using the python.config file. Now we have the code in the github reposistory and to make sure the code is deployement into this instance we use the codepipeline given by AWS for conitnous delivery. Search for codepipelines in aws
-
-<will add picture here>
-
--- Create a new pipeline and name the pipeline:
-
-
-
-
-
-
-
-
-
-
-
-
-
--- project inspired by the works of Krish Naik. 
 
 
