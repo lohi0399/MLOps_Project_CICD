@@ -51,3 +51,11 @@ data_ingestion.py: We will see how the data can be ingested so that the data can
 
  data_transformation.py: To do feature engineering, data cleaning, changing the dataset, column transformer, standard scaling etc.. (see the notebook)
 
+ 6. Model trainer: This creates my model.pkl file which can be later used for prediction. (You can see this under the artifacts folder if all the steps implemeted till now works fine.)
+
+ 7. Hyperparameter tuning 
+
+ 8. Prediction pipeline using Flask Web App : A simple web application which basically intracts with my .pkl files (type http://127.0.0.1:5000/ ,http://127.0.0.1:5000/predictions, etc.. in browser. By default the port is 5000)
+
+ 9. Project deployement using AWS using CICD pipeline
+
