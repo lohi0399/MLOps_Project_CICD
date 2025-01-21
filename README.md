@@ -44,6 +44,10 @@
 
  4. Data ingestion Implmentation
 
- (a) Data Ingestion: We will see how the data can be ingested so that the data can be used by our model. (Will see how the data is extracted locally as well as from MongoDB). In companies this data is generally created from the big data or cloud teams, we we use. So my aim is to get the data, and then split it into test and train
- Here I create a sperater folder called artifacts and store the train and test csv and also log wherever needed.
+data_ingestion.py: We will see how the data can be ingested so that the data can be used by our model. (Will see how the data is extracted locally as well as from MongoDB). In companies this data is generally created from the big data or cloud teams, we we use. So my aim is to get the data, and then split it into test and train
+ Here I create a sperater folder called artifacts and store the train and test csv and also log wherever needed. (If you don't want to push trhe aritfacts folder then add artifacts/ in your .gitignore, for some reason adding .artifacts didn't work for me)
+
+ 5. Data transformation pipeline
+
+ data_transformation.py: 
 
