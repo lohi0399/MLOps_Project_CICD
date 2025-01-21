@@ -225,5 +225,12 @@ Say your making a house (Analogy):
 
 ---
 
+## Docker Workflow:
 
+The workflow has CICD integrated (this flow can be seen in the .github folder of the project). We have the following steps:
+
+1. Integrartion: You can specify which machine to run it on, run unit tests etc..For example some unit tests which can be applied are: error hadling, input and output size check, performance check, CPU/GPU compatibily etc.. Conss
+
+2. Building and pushing the ECR image
+3. Contionous deployment
 
