@@ -252,7 +252,7 @@ The latest Docker image is automatically pulled from Amazon ECR and deployed on 
 2. **GitHub Actions Workflow**: Automate CI/CD steps.
 3. **AWS IAM Configuration**: Set up an IAM (Identity and Access Management) user with permissions for ECR and EC2.
 
-![IAM Configuration](images/IAM.png)
+![IAM Configuration](images/iam.png)
 
 The IAM configuration enables:
 - Access to the ECR (Elastic Container Registry).
