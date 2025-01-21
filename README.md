@@ -178,7 +178,52 @@ AWS Jenkins can be added for building tests.
 - Update this README with screenshots of deployed applications, pipelines, and results.
 - Add detailed explanations for each implementation step in future updates.
 - Can use python linter to avoid warning and manage test quality.
--- Logging and checkpointing system can be used as tests
+- Logging and checkpointing system can be used as tests
+- **Docker Basics**:
+  - **Docker File**: A docker file is basically instructions constaing how the docker container must look. It specifies the type of environement like (python, java etc..), libraries which needs to be installed, command to run it etc..
+  - **Dcoker Image**: The Python version and dependencies remain consistent across environments (e.g., development, testing, production).
+  - **Dcoker Container**: Each container is fully isolated, preventing conflicts with other projects or system-level dependencies. Therefore we don't have conflicts arising due to different OS, machines etc.
+
+---
+
+## Deployment Using Docker
+
+- Docker File
+![](images/DockerFile_img.png)
+
+As you can see in the picture we specify how the docker container needs to be configured. We mention the environment from which docker will pull the image. Then we make a directory called /app in this environement and copy our entire project in it.
+
+Subsequent steps in the picture after COPY shows how the run it.
+
+This is run by ` docker build filename ..`
+
+- Docker Image
+
+Taking the instructions from the docker file we can build an image. Say if the python environment is not there in my local repository then docker looks into it's registry in the cloud (or wherever it is) and pulls it.
+
+In hub.docker.com you can find the list of all docker registries. If you have an image which can benefit other then you can push as well.
+
+Once we have this image (like template or blueprint) this can be used to create a container, based on the template which exists in the image.
+
+This run by `docker run ...`
+
+- Docker Container
+
+A docker image can create a single or many conatiners.Each of them can be started or stopped using start/stop commands.
+
+Lightweight comapred to virtual machines
+
+![](images/docker.png)
+---
+
+## NOTE
+Say your making a house (Analogy):
+
+- Material needed (bricks, cement) --> docker file
+- Blueprint of house --> docker image
+- Final house(s) --> docker container.
+
+---
 
 
 
