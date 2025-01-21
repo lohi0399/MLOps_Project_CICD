@@ -49,5 +49,5 @@ data_ingestion.py: We will see how the data can be ingested so that the data can
 
  5. Data transformation pipeline
 
- data_transformation.py: 
+ data_transformation.py: To do feature engineering, data cleaning, changing the dataset, column transformer, standard scaling etc.. (see the notebook)
 
