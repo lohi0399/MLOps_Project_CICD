@@ -40,5 +40,5 @@
 
  -- Student performance indicator 
 
- (a) Jupyter notebook is the best to perform EDA and with the observations from this we can try to see how to encorporate it into our porject
+ (a) Jupyter notebook is the best to perform EDA and with the observations from this we can try to see how to encorporate it into our project. See the problem statement within notebook in the EDA notebook
 
