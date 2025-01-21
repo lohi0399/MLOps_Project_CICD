@@ -63,9 +63,33 @@ data_ingestion.py: We will see how the data can be ingested so that the data can
 
 -- AWS Elastic Beanstalk is an orchestration service offered by Amazon Web Services for deploying applications which orchestrates various AWS services, including EC2, S3, Simple Notification Service (SNS), CloudWatch, autoscaling, and Elastic Load Balancers. (source: wiki)
 
--- There are 2 different configurations we need to setup while working with elastic bean(eb) stalk. See within .ebextentions folder I have created a python.config file showcasing this. This python config file mainly tells the elastic bean stalk instance what is the entry point of your application. The content was give in the eb documentation (there is a different config file for docker based deployement). As we have seen earlier the entry point to our flask application was application, and hence in the config file it was set to:(also a application.py file was created (same content as app.py))
+-- There are 2 different configurations we need to setup while working with elastic bean(eb) stalk. See within .ebextentions folder I have created a python.config file showcasing this. This python config file mainly tells the elastic bean stalk instance what is the entry point of your application. The content was give in the eb documentation (there is a different config file for docker based deployement). As we have seen earlier the entry point to our flask application was application, and hence in the config file it was set to:(also a application.py file was created (same content as app.py, make sure to delete the app.py as this causes problems))
 
 WSGIPath: application:application
+
+-- Now create a AWS account (need a credit card). Then search for Elastic Bean Stalk and click on applications under Top Features
+
+<will add picture here>
+
+-- Create a webapp in the eb website. Say called it 'Student Performance'.
+
+-- Select the platform as python <version you use>
+
+-- How the deployement occurs is we have a elastic bean stalk (which maybe a server or a linux machine) where we can create an environment and deploy my code. This is bascially presentr in AWS and we have configured this using the python.config file. Now we have the code in the github reposistory and to make sure the code is deployement into this instance we use the codepipeline given by AWS for conitnous delivery. Search for codepipelines in aws
+
+<will add picture here>
+
+-- Create a new pipeline and name the pipeline:
+
+
+
+
+
+
+
+
+
+
 
 
 
