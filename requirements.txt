@@ -1,4 +1,5 @@
 pandas
 numpy
 seaborn
+ipykernal
 -e . # Mapping it to setup.py

@@ -38,5 +38,7 @@
 
  3. Defining the project problem statement, EDA and Model Training
 
- -- Student performance indicator
+ -- Student performance indicator 
+
+ (a) Jupyter notebook is the best to perform EDA and with the observations from this we can try to see how to encorporate it into our porject
 
