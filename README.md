@@ -57,5 +57,18 @@ data_ingestion.py: We will see how the data can be ingested so that the data can
 
  8. Prediction pipeline using Flask Web App : A simple web application which basically intracts with my .pkl files (type http://127.0.0.1:5000/ ,http://127.0.0.1:5000/predictions, etc.. in browser. By default the port is 5000)
 
- 9. Project deployement using AWS using CICD pipeline
+ < will add final prediction image here>
+
+ 9. Project deployement using AWS using CICD pipeline : AWS elastic beanstalk 
+
+-- AWS Elastic Beanstalk is an orchestration service offered by Amazon Web Services for deploying applications which orchestrates various AWS services, including EC2, S3, Simple Notification Service (SNS), CloudWatch, autoscaling, and Elastic Load Balancers. (source: wiki)
+
+-- There are 2 different configurations we need to setup while working with elastic bean(eb) stalk. See within .ebextentions folder I have created a python.config file showcasing this. This python config file mainly tells the elastic bean stalk instance what is the entry point of your application. The content was give in the eb documentation (there is a different config file for docker based deployement). As we have seen earlier the entry point to our flask application was application, and hence in the config file it was set to:(also a application.py file was created (same content as app.py))
+
+WSGIPath: application:application
+
+
+
+-- project inspired by the works of Krish Naik. 
+
 
