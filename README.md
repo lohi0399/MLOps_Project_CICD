@@ -225,12 +225,48 @@ Say your making a house (Analogy):
 
 ---
 
-## Docker Workflow:
+## Docker Workflow
 
-The workflow has CICD integrated (this flow can be seen in the .github folder of the project). We have the following steps:
+The workflow integrates CI/CD processes, which can be found in the `.github` folder of the project. The CI/CD pipeline uses a workflow available in the GitHub Actions Marketplace. Below are the key steps involved:
 
-1. Integrartion: You can specify which machine to run it on, run unit tests etc..For example some unit tests which can be applied are: error hadling, input and output size check, performance check, CPU/GPU compatibily etc.. Conss
+### 1. Integration
+You can specify the environment (e.g., machine type) where the workflow runs, execute unit tests, and ensure pre-deployment validation. Examples of unit tests include:
+- **Error Handling**: Validating how the system reacts to unexpected inputs.
+- **Input/Output Size Check**: Ensuring input and output adhere to the expected dimensions.
+- **Performance Testing**: Verifying execution within acceptable time/memory limits.
+- **CPU/GPU Compatibility**: Ensuring the application runs on both CPU and GPU setups without issues.
 
-2. Building and pushing the ECR image
-3. Contionous deployment
+### 2. Building and Pushing to Amazon ECR
+AWS Elastic Container Registry (ECR) is used to securely store private Docker images. The pipeline builds the Docker image and pushes it to the ECR repository. From there, deployment is executed on an Amazon EC2 instance. This step involves:
+- Setting up AWS CodePipeline for continuous delivery.
+- Validating AWS credentials for secure operations.
+
+### 3. Continuous Deployment
+The latest Docker image is automatically pulled from Amazon ECR and deployed on an EC2 instance. This ensures the system always runs the most up-to-date version of the application.
+
+---
+
+### Overall Steps in the Workflow:
+
+1. **Docker Build**: Create a containerized application.
+2. **GitHub Actions Workflow**: Automate CI/CD steps.
+3. **AWS IAM Configuration**: Set up an IAM (Identity and Access Management) user with permissions for ECR and EC2.
+
+![IAM Configuration](images/IAM.png)
+
+The IAM configuration enables:
+- Access to the ECR (Elastic Container Registry).
+- Launching and managing EC2 (Elastic Compute Cloud) instances.
+
+### Framework Used
+This project uses:
+- **Elastic Beanstalk**: For simplifying deployment and scaling of applications. Elastic Beanstalk manages the deployment process, monitors application health, and handles scaling automatically.
+
+### Alternative: Using SageMaker
+**Amazon SageMaker** can be used as an alternative framework for deployment, particularly for machine learning workflows. SageMaker simplifies the process of training, deploying, and scaling ML models. To use SageMaker instead of Elastic Beanstalk, the following changes would be required:
+- **Model Packaging**: Package the application as a SageMaker model by providing the necessary inference code and dependencies.
+- **Endpoint Deployment**: Deploy the model to a SageMaker endpoint instead of EC2. This step involves creating an endpoint configuration and specifying the instance type.
+- **Monitoring and Scaling**: Use SageMaker's built-in features for monitoring metrics and automatic scaling.
+
+By switching to SageMaker, the deployment becomes more specialized for machine learning models, providing better support for tasks like distributed training, real-time inference, and batch predictions. They also provide seperate jupyter notebooks making the process streamlined.
 
